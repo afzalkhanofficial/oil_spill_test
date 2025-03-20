@@ -1,11 +1,10 @@
 from flask import Flask, request, jsonify
 import cv2
 import numpy as np
-import pickle
+from joblib import load as joblib_load
 from skimage.feature import hog
 import os
 import base64
-from matplotlib import pyplot as plt
 
 app = Flask(__name__)
 
@@ -20,34 +19,30 @@ CELLS_PER_BLOCK = (2, 2)
 # Confidence threshold (e.g., 60%)
 CONF_THRESHOLD = 0.6
 
-# Load the pre-trained model from pickle file
+# Load the pre-trained model using joblib
 if not os.path.exists(MODEL_PATH):
     raise FileNotFoundError(f"Model file '{MODEL_PATH}' not found.")
-with open(MODEL_PATH, 'rb') as f:
-    model = pickle.load(f)
+model = joblib_load(MODEL_PATH)
 
 # ----------------------------
 # Utility Functions
 # ----------------------------
 def extract_features(img, img_size=IMG_SIZE, pixels_per_cell=PIXELS_PER_CELL, cells_per_block=CELLS_PER_BLOCK):
-    """
-    Convert image to grayscale if needed, resize it, and extract HOG features.
-    """
+    """Convert image to grayscale (if needed), resize it, and extract HOG features."""
     if len(img.shape) == 3:
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     img = cv2.resize(img, img_size)
-    features = hog(img,
-                   pixels_per_cell=pixels_per_cell,
-                   cells_per_block=cells_per_block,
-                   visualize=False,
-                   feature_vector=True)
+    features = hog(
+        img,
+        pixels_per_cell=pixels_per_cell,
+        cells_per_block=cells_per_block,
+        visualize=False,
+        feature_vector=True
+    )
     return features
 
 def generate_heatmap(image, model, window_size=128, stride=32):
-    """
-    Slide a window over the image, compute oil spill probability for each patch,
-    and return an interpolated heatmap.
-    """
+    """Slide a window over the image and compute oil spill probability for each patch."""
     if len(image.shape) == 3:
         image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     rows, cols = image.shape
@@ -58,8 +53,13 @@ def generate_heatmap(image, model, window_size=128, stride=32):
     for i, r in enumerate(range(0, rows - window_size + 1, stride)):
         for j, c in enumerate(range(0, cols - window_size + 1, stride)):
             patch = image[r:r+window_size, c:c+window_size]
-            feat = hog(patch, pixels_per_cell=PIXELS_PER_CELL, cells_per_block=CELLS_PER_BLOCK,
-                       visualize=False, feature_vector=True)
+            feat = hog(
+                patch,
+                pixels_per_cell=PIXELS_PER_CELL,
+                cells_per_block=CELLS_PER_BLOCK,
+                visualize=False,
+                feature_vector=True
+            )
             feat = feat.reshape(1, -1)
             prob = model.predict_proba(feat)[0][1]
             heatmap[i, j] = prob
@@ -68,9 +68,7 @@ def generate_heatmap(image, model, window_size=128, stride=32):
     return heatmap_resized
 
 def encode_image_to_base64(image):
-    """
-    Encode an image (numpy array) as a base64 string for JSON transport.
-    """
+    """Encode an image (numpy array) as a base64 string for JSON transport."""
     _, buffer = cv2.imencode('.jpg', image)
     img_str = base64.b64encode(buffer).decode('utf-8')
     return img_str
@@ -89,6 +87,7 @@ def predict():
     if img is None:
         return jsonify({'error': 'Invalid image file'}), 400
 
+    # Resize and extract features for prediction
     img_resized = cv2.resize(img, IMG_SIZE)
     features = extract_features(img_resized)
     features = features.reshape(1, -1)
@@ -102,6 +101,7 @@ def predict():
         'confidence_warning': confidence < CONF_THRESHOLD
     }
 
+    # Generate heatmap overlay if image dimensions allow
     if img.shape[0] >= IMG_SIZE[1] and img.shape[1] >= IMG_SIZE[0]:
         heatmap = generate_heatmap(img, model, window_size=IMG_SIZE[0], stride=32)
         heatmap_color = cv2.applyColorMap((heatmap * 255).astype(np.uint8), cv2.COLORMAP_JET)
@@ -110,8 +110,7 @@ def predict():
     else:
         result['heatmap_overlay'] = None
 
-    # (Optional) If you want to send a HOG visualization image as well, you can generate it:
-    # Here we generate the HOG image from the resized image.
+    # Generate HOG visualization from the resized image
     hog_features, hog_image = hog(
         cv2.cvtColor(img_resized, cv2.COLOR_BGR2GRAY),
         pixels_per_cell=PIXELS_PER_CELL,
