@@ -1,0 +1,941 @@
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;500;700&display=swap");
+
+/* --------------- Global Reset & Styles --------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    background: #121212;
+    color: #e0e0e0;
+    line-height: 1.6;
+}
+
+/* --------------- Container --------------- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* --------------- Header --------------- */
+header {
+    background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+    padding: 25px 0;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+header h1 {
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(2.5rem, 6vw, 6rem);
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #ffffff;
+}
+
+/* --------------- Navigation --------------- */
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #e0e0e0;
+    font-weight: 500;
+    padding: 5px 6px;
+    border-radius: 8px;
+    transition: background 0.3s ease, color 0.3s ease;
+    white-space: nowrap;
+    font-size: clamp(0.8rem, 1.5vw, 3rem);
+}
+
+nav ul li a:hover {
+    background-color: #1885b4;
+    color: #fff;
+}
+
+nav ul li a.active {
+    background: linear-gradient(45deg, #ff6600, #ff8c00);
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-wrap: nowrap;
+    }
+
+    nav ul li {
+        margin: 0 5px;
+    }
+}
+
+/* --------------- Hero Section --------------- */
+.hero {
+    background-image: url("bg.gif");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: clamp(70vh, 70vh, 70vh);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero-content {
+    max-width: 90%;
+    padding: 20px;
+}
+
+.hero h2 {
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(2rem, 4vw, 4rem);
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.hero p {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* --------------- About Section --------------- */
+.about {
+    padding: 2rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.about .container {
+    position: relative;
+    z-index: 1;
+}
+
+.about h2 {
+    font-family: "Orbitron", sans-serif;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, #2563eb, #059669);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.about p {
+    text-align: center;
+    font-size: 1.125rem;
+    color: #4b5563;
+    max-width: 48rem;
+    margin: 0 auto 2.5rem;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.about-image {
+    flex: 1;
+}
+
+.about-image img {
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0.75rem;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-text .card {
+    margin-left: auto;
+    margin-right: auto;
+    width: 98%;
+    padding: 1.4rem;
+    border-radius: 0.75rem;
+    border: 1px solid #dbeafe;
+}
+
+.about-text .card h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.about-text .card p {
+    color: #ffc800;
+    margin-bottom: 1rem;
+}
+
+.about-text .card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about-text .card ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.about-text .card ul li i {
+    color: #10b981;
+    margin-right: 0.5rem;
+}
+
+.about-text .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1.4rem;
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-text .stat {
+    padding: 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid #dbeafe;
+    text-align: center;
+    transition: box-shadow 0.3s;
+}
+
+.about-text .stat .number {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.about-text .stat div {
+    font-size: 0.875rem;
+    color: #4b5563;
+}
+
+@media (max-width: 768px) {
+    .about h2 {
+    font-size: 3rem;
+    }
+    
+    .about-content {
+        flex-direction: column;
+    }
+
+    .about-image, .about-text {
+        width: 100%;
+    }
+
+    .about-text .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* --------------- Button Styles --------------- */
+.btn {
+    display: inline-block;
+    background: linear-gradient(45deg, #ff6600, #ff8c00);
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    font-size: clamp(1rem, 1vw, 4rem);
+    font-weight: bold;
+    border-radius: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 102, 0, 0.7);
+}
+
+/* --------------- Features Section --------------- */
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 50px 10px;
+    background: #1e1e1e;
+}
+
+@media (max-width: 768px) {
+    .features {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.feature {
+    background: #242424;
+    margin-left: auto;
+    margin-right: auto;
+    flex: 1 1 200px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    width: clamp(350px, 30%, 400px);
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+.feature h3 {
+    font-family: "Orbitron", sans-serif;
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: clamp(1.5rem, 2vw, 5rem);
+}
+
+.feature p {
+    margin-bottom: 20px;
+    font-size: clamp(0.8rem, 1vw, 2rem);
+}
+
+/* --------------- Technology Section --------------- */
+.technology-section {
+    padding: 2rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.text-center {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-family: "Orbitron", sans-serif;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, #2563eb, #059669);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle {
+    font-size: 1.125rem;
+    color: #4b5563;
+    max-width: 32rem;
+    margin: 0 auto;
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .tech-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.tech-card {
+    border: 1px solid #dbeafe;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+    padding: 1.5rem;
+}
+
+.tech-card:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.card-icon {
+    width: 4rem;
+    height: 4rem;
+    margin-bottom: 1rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+}
+
+.custom-blue { background-color: #0969e5; }
+.custom-green { background-color: #0be54c; }
+.custom-purple { background-color: #7908eb; }
+.custom-pink { background-color: #ed0886; }
+
+.tech-card:hover .card-icon {
+    transform: rotate(12deg);
+}
+
+.card-icon i {
+    font-size: 1.875rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.card-description {
+    font-size: 0.875rem;
+    color: #4b5563;
+    margin-bottom: 1rem;
+}
+
+.card-features {
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.tech-card:hover .card-features {
+    opacity: 1;
+}
+
+.card-features li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.25rem;
+}
+
+.card-features i {
+    color: #22c55e;
+    margin-right: 0.5rem;
+}
+
+.card-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0.25rem;
+    background: linear-gradient(to right, #3b82f6, #22c55e);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tech-card:hover .card-border {
+    opacity: 1;
+}
+
+.stack-visualization {
+    margin-top: 2rem;
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #dbeafe;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+}
+
+.stack-title {
+    font-size: 1.125rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.tech-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.tech-logo {
+    position: relative;
+}
+
+.tech-logo img {
+    height: clamp(2rem, 4vw, 4rem);
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.tech-logo:hover img {
+    opacity: 1;
+}
+
+.tech-logo:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+/* --------------- Team Section --------------- */
+/* Section styling */
+#meet-team {
+    padding: 10px 0;
+    background-color: #1e1e1e;
+    text-align: center;
+}
+
+/* Heading with gradient text */
+#meet-team h2 {
+    font-family: "Orbitron", sans-serif;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, #2563eb, #059669);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Responsive heading size */
+@media (min-width: 768px) {
+    #meet-team h2 {
+        font-size: 3rem;
+    }
+}
+
+/* Carousel container */
+.team-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* Wrapper for slides */
+.team-carousel-wrapper {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+/* Individual slide */
+.team-slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Team member image container */
+.team-member {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 4px solid #203a43;
+    background: linear-gradient(to top right, #0f2027, #2c5364);
+    padding: 4px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+    transform: scale(1.1);
+}
+
+/* Special styling for team members 4 and 5 */
+.team-member.special-member {
+    border: 4px solid #ff6600;
+    background: linear-gradient(to top right, #ff6600, #ff8c00);
+}
+
+/* Team member image */
+.team-member img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Hover overlay effect */
+.team-hover-overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color 0.3s ease;
+    border: 2px solid #e0e0e0;
+}
+
+.team-member:hover .team-hover-overlay {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Team member name */
+.team-name {
+    margin-top: 24px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #e0e0e0;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .team-member {
+        width: 192px;
+        height: 192px;
+    }
+    .team-name {
+        font-size: 1.75rem;
+    }
+}
+
+/* --------------- Footer --------------- */
+footer {
+    background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+    padding: 5px 0;
+    text-align: center;
+    margin-top: 40px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Footer Content */
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+@media (min-width: 768px) {
+    .footer-content {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+/* Social Media Icons */
+.footer-social {
+    display: flex;
+    gap: 1.25rem;
+}
+
+.social-link {
+    color: #d1d5db;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.social-link:hover {
+    color: #ffffff;
+}
+
+/* Footer Links */
+.footer-links {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+    .footer-links {
+        margin-top: 0;
+    }
+}
+
+.copyright {
+    font-size: 0.875rem;
+    color: #d1d5db;
+}
+
+.links {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.5rem;
+}
+
+.link-item {
+    color: #9ca3af;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.3s;
+}
+
+.link-item:hover {
+    color: #f97316;
+}
+
+.link-item i {
+    margin-right: 0.25rem;
+}
+
+.link-item + .link-item::before {
+    content: "|";
+    margin: 0 0.5rem;
+    color: #6b7280;
+}
+
+/* Email Subscription */
+.footer-subscribe {
+    margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+    .footer-subscribe {
+        margin-top: 0;
+    }
+}
+
+.subscribe-form {
+    display: flex;
+    width: 100%;
+    max-width: 15rem;
+}
+
+.email-input {
+    padding: 0.35rem 0.5rem;
+    border: none;
+    border-radius: 0.375rem 0 0 0.375rem;
+    outline: none;
+    color: #000000;
+    width: 100%;
+    font-size: 0.875rem;
+}
+
+.subscribe-button {
+    background: #f97316;
+    color: #ffffff;
+    padding: 0.35rem 1rem;
+    border: none;
+    border-radius: 0 0.375rem 0.375rem 0;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.subscribe-button:hover {
+    background: #ea580c;
+}
+
+/* --------------- Map, History & Detector Sections --------------- */
+.map-section,
+.history-section,
+.detector-section {
+    padding: 3rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.map-section h2,
+.history-section h2,
+.detector-section h2 {
+    font-family: "Orbitron", sans-serif;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, #2563eb, #059669);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.map-section p,
+.history-section p,
+.detector-section p {
+    text-align: center;
+    font-size: 1.125rem;
+    color: #4b5563;
+    max-width: 48rem;
+    margin: 0 auto 2.5rem;
+}
+
+/* --------------- MAP PAGE --------------- */
+
+/* --------------- Map section --------------- */
+#map {
+    height: 550px;
+    width: 90%;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Tooltip Styling */
+#map .leaflet-tooltip {
+    background: rgba(0, 0, 0, 0.8);
+    color: cyan;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 6px 10px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.7);
+}
+
+/* --------------- Table Section --------------- */
+.table-container {
+    width: 90%;
+    margin: 40px auto;
+    color: #e0e0e0;
+    font-family: "Roboto", sans-serif;
+}
+
+.table-container h2 {
+    font-family: "Orbitron", sans-serif;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, #2563eb, #059669);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.table-container img {
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #333;
+}
+
+th {
+    background: #003366;
+    color: #fff;
+}
+
+tr {
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+tr:hover {
+    background: rgba(0, 255, 255, 0.1);
+}
+
+/* Modal styling */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #121212;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
+    position: relative;
+    color: #e0e0e0;
+    font-family: "Roboto", sans-serif;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 20px;
+    color: cyan;
+}
+
+/* --------------- Marine Traffic --------------- */
+
+
+/* --------------- History & Detector Sections --------------- */
+
+/* Form & Detector Styles */
+#uploadForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#uploadForm input[type="file"] {
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #333;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+}
+
+#uploadForm button {
+    border: none;
+    cursor: pointer;
+}
+
+/* Result Section */
+#result {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+}
