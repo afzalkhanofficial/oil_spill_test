@@ -1,6 +1,9 @@
+import sys
+import numpy as np
+sys.modules['numpy._core'] = np.core
+
 from flask import Flask, request, jsonify
 import cv2
-import numpy as np
 from joblib import load as joblib_load
 from skimage.feature import hog
 import os
